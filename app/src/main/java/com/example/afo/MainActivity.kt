@@ -209,6 +209,8 @@ enum class Screen {
     ROMS,
     FAVORITES,
     SOCIAL,
+    PROFILE,
+    SETTINGS,
     ROM_DETAIL
 }
 
@@ -239,6 +241,9 @@ fun EmuLauncherApp() {
     var showEmulatorPicker by remember { mutableStateOf(false) }
     var availableEmulators by remember { mutableStateOf<List<com.example.afo.models.EmulatorApp>>(emptyList()) }
     var romToLaunch by remember { mutableStateOf<RomFile?>(null) }
+
+    // Sistema de logros
+    val achievementsManager = remember { com.example.afo.achievements.AchievementsManager.getInstance(context) }
 
     // Escanear emuladores y ROMs al inicio
     LaunchedEffect(Unit) {
@@ -407,6 +412,12 @@ fun EmuLauncherApp() {
                     Screen.SOCIAL -> {
                         SocialScreen()
                     }
+                    Screen.PROFILE -> {
+                        ProfileScreen()
+                    }
+                    Screen.SETTINGS -> {
+                        SettingsScreen()
+                    }
                     Screen.ROM_DETAIL -> {
                         selectedRom?.let { rom ->
 
@@ -454,7 +465,13 @@ fun EmuLauncherApp() {
                                                 availableEmulators.first().packageName,
                                                 playRom.path
                                             )
-                                            if (!success) {
+                                            if (success) {
+                                                // Registrar en logros/estadísticas
+                                                achievementsManager.recordGameOpened(
+                                                    playRom.name,
+                                                    playRom.platform.displayName
+                                                )
+                                            } else {
                                                 Toast.makeText(
                                                     context,
                                                     "No se pudo abrir el emulador. Verifica que esté instalado.",
@@ -493,7 +510,13 @@ fun EmuLauncherApp() {
                             selectedEmulator.packageName,
                             romToLaunch!!.path
                         )
-                        if (!success) {
+                        if (success) {
+                            // Registrar en logros/estadísticas
+                            achievementsManager.recordGameOpened(
+                                romToLaunch!!.name,
+                                romToLaunch!!.platform.displayName
+                            )
+                        } else {
                             Toast.makeText(
                                 context,
                                 "No se pudo abrir ${selectedEmulator.name}",
@@ -546,8 +569,10 @@ fun EmuLauncherTopBar(
             selectedTabIndex = when (currentScreen) {
                 Screen.ROMS -> 0
                 Screen.FAVORITES -> 1
-                Screen.SOCIAL -> 2
-                Screen.EMULATORS -> 3
+                Screen.PROFILE -> 2
+                Screen.SETTINGS -> 3
+                Screen.EMULATORS -> 4
+                Screen.SOCIAL -> 5
                 else -> 0
             },
             containerColor = DarkSurface,
@@ -594,6 +619,56 @@ fun EmuLauncherTopBar(
                         Spacer(modifier = Modifier.width(8.dp))
                         Text(
                             text = "Favoritos",
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 15.sp
+                        )
+                    }
+                },
+                selectedContentColor = PrimaryBlue,
+                unselectedContentColor = TextSecondary
+            )
+
+            Tab(
+                selected = currentScreen == Screen.PROFILE,
+                onClick = { onTabSelected(Screen.PROFILE) },
+                text = {
+                    Row(
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.EmojiEvents,
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "Perfil",
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 15.sp
+                        )
+                    }
+                },
+                selectedContentColor = PrimaryBlue,
+                unselectedContentColor = TextSecondary
+            )
+
+            Tab(
+                selected = currentScreen == Screen.SETTINGS,
+                onClick = { onTabSelected(Screen.SETTINGS) },
+                text = {
+                    Row(
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.Palette,
+                            contentDescription = null,
+                            modifier = Modifier.size(20.dp)
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(
+                            text = "Temas",
                             fontWeight = FontWeight.SemiBold,
                             fontSize = 15.sp
                         )
