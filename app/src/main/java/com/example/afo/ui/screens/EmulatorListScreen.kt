@@ -162,8 +162,8 @@ private fun EmulatorCard(
                 .background(
                     brush = Brush.verticalGradient(
                         colors = listOf(
-                            PrimaryBlue.copy(alpha = 0.3f),
-                            CardBackground
+                            MaterialTheme.colorScheme.primary.copy(alpha = 0.3f),
+                            MaterialTheme.colorScheme.surfaceVariant
                         )
                     )
                 )
@@ -208,7 +208,7 @@ private fun EmulatorCard(
                             imageVector = Icons.Filled.Settings,
                             contentDescription = null,
                             modifier = Modifier.size(48.dp),
-                            tint = PrimaryBlue
+                            tint = MaterialTheme.colorScheme.primary
                         )
                     }
                 }
@@ -218,7 +218,7 @@ private fun EmulatorCard(
                 // Nombre del emulador
                 Text(
                     text = emulator.name,
-                    color = TextPrimary,
+                    color = MaterialTheme.colorScheme.onSurface,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
                     maxLines = 2,
@@ -232,7 +232,7 @@ private fun EmulatorCard(
                 if (emulator.supportedPlatforms.isNotEmpty()) {
                     Text(
                         text = emulator.supportedPlatforms.joinToString(", ") { it.displayName },
-                        color = TextSecondary,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Medium,
                         maxLines = 1,

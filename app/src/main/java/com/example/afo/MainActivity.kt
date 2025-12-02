@@ -280,7 +280,7 @@ fun EmuLauncherApp() {
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        containerColor = DarkBackground,
+        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             if (currentScreen != Screen.ROM_DETAIL) {
                 EmuLauncherTopBar(
@@ -536,11 +536,11 @@ fun EmuLauncherTopBar(
     currentScreen: Screen,
     onTabSelected: (Screen) -> Unit
 ) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(DarkSurface)
-    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(MaterialTheme.colorScheme.surface)
+        ) {
         // Header
         TopAppBar(
             title = {
@@ -549,18 +549,18 @@ fun EmuLauncherTopBar(
                         text = "Banana Launcher",
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Black,
-                        color = TextPrimary
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
                         text = "Tu biblioteca de juegos",
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Medium,
-                        color = TextSecondary
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             },
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = DarkSurface
+                containerColor = MaterialTheme.colorScheme.surface
             )
         )
 
@@ -571,12 +571,12 @@ fun EmuLauncherTopBar(
                 Screen.FAVORITES -> 1
                 Screen.PROFILE -> 2
                 Screen.SETTINGS -> 3
-                Screen.EMULATORS -> 4
-                Screen.SOCIAL -> 5
+                Screen.SOCIAL -> 4
+                Screen.EMULATORS -> 5
                 else -> 0
             },
-            containerColor = DarkSurface,
-            contentColor = TextPrimary
+            containerColor = MaterialTheme.colorScheme.surface,
+            contentColor = MaterialTheme.colorScheme.onSurface
         ) {
             Tab(
                 selected = currentScreen == Screen.ROMS,
@@ -599,8 +599,8 @@ fun EmuLauncherTopBar(
                         )
                     }
                 },
-                selectedContentColor = PrimaryBlue,
-                unselectedContentColor = TextSecondary
+                selectedContentColor = MaterialTheme.colorScheme.primary,
+                unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
             Tab(
@@ -624,8 +624,8 @@ fun EmuLauncherTopBar(
                         )
                     }
                 },
-                selectedContentColor = PrimaryBlue,
-                unselectedContentColor = TextSecondary
+                selectedContentColor = MaterialTheme.colorScheme.primary,
+                unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
             Tab(
@@ -649,8 +649,8 @@ fun EmuLauncherTopBar(
                         )
                     }
                 },
-                selectedContentColor = PrimaryBlue,
-                unselectedContentColor = TextSecondary
+                selectedContentColor = MaterialTheme.colorScheme.primary,
+                unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
             Tab(
@@ -674,8 +674,8 @@ fun EmuLauncherTopBar(
                         )
                     }
                 },
-                selectedContentColor = PrimaryBlue,
-                unselectedContentColor = TextSecondary
+                selectedContentColor = MaterialTheme.colorScheme.primary,
+                unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
             Tab(
@@ -699,8 +699,8 @@ fun EmuLauncherTopBar(
                         )
                     }
                 },
-                selectedContentColor = PrimaryBlue,
-                unselectedContentColor = TextSecondary
+                selectedContentColor = MaterialTheme.colorScheme.primary,
+                unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
             Tab(
@@ -724,8 +724,8 @@ fun EmuLauncherTopBar(
                         )
                     }
                 },
-                selectedContentColor = PrimaryBlue,
-                unselectedContentColor = TextSecondary
+                selectedContentColor = MaterialTheme.colorScheme.primary,
+                unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
     }

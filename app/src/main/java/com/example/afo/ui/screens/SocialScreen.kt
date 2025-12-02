@@ -50,13 +50,13 @@ fun SocialScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(DarkBackground)
+            .background(MaterialTheme.colorScheme.background)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             // Header con tabs
             Surface(
                 modifier = Modifier.fillMaxWidth(),
-                color = DarkSurface,
+                color = MaterialTheme.colorScheme.surface,
                 shadowElevation = 4.dp
             ) {
                 Column {
@@ -713,7 +713,7 @@ private fun ChatDialog(
     ) {
         Surface(
             shape = RoundedCornerShape(16.dp),
-            color = DarkSurface
+            color = MaterialTheme.colorScheme.surface
         ) {
             Column(
                 modifier = Modifier.fillMaxSize()

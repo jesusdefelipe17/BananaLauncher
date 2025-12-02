@@ -53,13 +53,13 @@ fun ProfileScreen() {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(DarkBackground)
+            .background(MaterialTheme.colorScheme.background)
     ) {
         Column(modifier = Modifier.fillMaxSize()) {
             // Header con resumen
             Surface(
                 modifier = Modifier.fillMaxWidth(),
-                color = DarkSurface,
+                color = MaterialTheme.colorScheme.surface,
                 shadowElevation = 8.dp
             ) {
                 Column(
@@ -67,12 +67,12 @@ fun ProfileScreen() {
                         .fillMaxWidth()
                         .padding(20.dp)
                 ) {
-                    Text(
-                        text = "Mi Perfil",
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Black,
-                        color = TextPrimary
-                    )
+                Text(
+                    text = "Mi Perfil",
+                    fontSize = 28.sp,
+                    fontWeight = FontWeight.Black,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
@@ -116,13 +116,13 @@ fun ProfileScreen() {
                                 text = "Progreso de Logros",
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Medium,
-                                color = TextSecondary
+                                color = MaterialTheme.colorScheme.onSurfaceVariant
                             )
                             Text(
                                 text = "${unlockedPercentage.toInt()}%",
                                 fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
-                                color = PrimaryBlue
+                                color = MaterialTheme.colorScheme.primary
                             )
                         }
 
@@ -134,8 +134,8 @@ fun ProfileScreen() {
                                 .fillMaxWidth()
                                 .height(8.dp)
                                 .clip(RoundedCornerShape(4.dp)),
-                            color = PrimaryBlue,
-                            trackColor = DarkSurfaceVariant
+                            color = MaterialTheme.colorScheme.primary,
+                            trackColor = MaterialTheme.colorScheme.surfaceVariant
                         )
                     }
 
@@ -145,7 +145,7 @@ fun ProfileScreen() {
                     TabRow(
                         selectedTabIndex = selectedTab.ordinal,
                         containerColor = Color.Transparent,
-                        contentColor = TextPrimary
+                        contentColor = MaterialTheme.colorScheme.onSurface
                     ) {
                         Tab(
                             selected = selectedTab == ProfileTab.ACHIEVEMENTS,
@@ -163,8 +163,8 @@ fun ProfileScreen() {
                                     Text("Logros")
                                 }
                             },
-                            selectedContentColor = PrimaryBlue,
-                            unselectedContentColor = TextSecondary
+                            selectedContentColor = MaterialTheme.colorScheme.primary,
+                            unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant
                         )
 
                         Tab(
@@ -183,8 +183,8 @@ fun ProfileScreen() {
                                     Text("Estadísticas")
                                 }
                             },
-                            selectedContentColor = PrimaryBlue,
-                            unselectedContentColor = TextSecondary
+                            selectedContentColor = MaterialTheme.colorScheme.primary,
+                            unselectedContentColor = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }
@@ -221,7 +221,7 @@ private fun StatCard(
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(
-            containerColor = CardBackground
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         ),
         shape = RoundedCornerShape(12.dp)
     ) {
@@ -240,12 +240,12 @@ private fun StatCard(
                 text = value,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = TextPrimary
+                color = MaterialTheme.colorScheme.onSurface
             )
             Text(
                 text = label,
                 fontSize = 12.sp,
-                color = TextSecondary
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         }
     }
@@ -344,9 +344,9 @@ private fun AchievementCard(
                     .clip(CircleShape)
                     .background(
                         if (isUnlocked)
-                            PrimaryBlue.copy(alpha = 0.2f)
+                            MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
                         else
-                            Color.Gray.copy(alpha = 0.1f)
+                            MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.1f)
                     ),
                 contentAlignment = Alignment.Center
             ) {
@@ -409,8 +409,8 @@ private fun AchievementCard(
                                 .fillMaxWidth()
                                 .height(4.dp)
                                 .clip(RoundedCornerShape(2.dp)),
-                            color = PrimaryBlue,
-                            trackColor = DarkSurfaceVariant
+                            color = MaterialTheme.colorScheme.primary,
+                            trackColor = MaterialTheme.colorScheme.surfaceVariant
                         )
                     }
                 }
@@ -477,7 +477,7 @@ private fun GameStatCard(
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = CardBackground
+            containerColor = MaterialTheme.colorScheme.surfaceVariant
         ),
         shape = RoundedCornerShape(12.dp)
     ) {
@@ -492,14 +492,14 @@ private fun GameStatCard(
             Surface(
                 modifier = Modifier.size(48.dp),
                 shape = RoundedCornerShape(8.dp),
-                color = PrimaryBlue.copy(alpha = 0.2f)
+                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.2f)
             ) {
                 Box(contentAlignment = Alignment.Center) {
                     Text(
                         text = stat.platform.take(3).uppercase(),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
-                        color = PrimaryBlue
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
             }
@@ -512,7 +512,7 @@ private fun GameStatCard(
                     text = stat.gameName,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold,
-                    color = TextPrimary,
+                    color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 1
                 )
 
@@ -523,13 +523,13 @@ private fun GameStatCard(
                     Text(
                         text = "⏱️ ${formatPlayTime(stat.totalPlayTime)}",
                         fontSize = 12.sp,
-                        color = TextSecondary
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
 
                     Text(
                         text = "🎮 ${stat.timesOpened}x",
                         fontSize = 12.sp,
-                        color = TextSecondary
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
 
@@ -537,7 +537,7 @@ private fun GameStatCard(
                     Text(
                         text = "Hace ${formatTimeAgo(stat.lastPlayed)}",
                         fontSize = 11.sp,
-                        color = TextTertiary,
+                        color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                         modifier = Modifier.padding(top = 2.dp)
                     )
                 }

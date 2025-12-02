@@ -56,10 +56,10 @@ fun AnimatedButton(
         enabled = enabled,
         shape = RoundedCornerShape(16.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = PrimaryBlue,
-            contentColor = TextPrimary,
-            disabledContainerColor = DarkSurfaceVariant,
-            disabledContentColor = TextTertiary
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = Color.White,
+            disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            disabledContentColor = MaterialTheme.colorScheme.onSurfaceVariant
         ),
         elevation = ButtonDefaults.buttonElevation(
             defaultElevation = 4.dp,
@@ -205,13 +205,13 @@ fun LoadingIndicator(
     ) {
         CircularProgressIndicator(
             modifier = Modifier.size(64.dp),
-            color = PrimaryBlue,
+            color = MaterialTheme.colorScheme.primary,
             strokeWidth = 6.dp
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
             text = text,
-            color = TextSecondary,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontSize = 18.sp,
             fontWeight = FontWeight.Medium
         )
@@ -237,19 +237,19 @@ fun EmptyState(
             imageVector = icon,
             contentDescription = null,
             modifier = Modifier.size(120.dp),
-            tint = TextTertiary.copy(alpha = 0.5f)
+            tint = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
         )
         Spacer(modifier = Modifier.height(24.dp))
         Text(
             text = title,
-            color = TextPrimary,
+            color = MaterialTheme.colorScheme.onSurface,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold
         )
         Spacer(modifier = Modifier.height(12.dp))
         Text(
             text = message,
-            color = TextSecondary,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontSize = 16.sp,
             textAlign = androidx.compose.ui.text.style.TextAlign.Center
         )
@@ -279,8 +279,8 @@ fun GradientCard(
         .background(
             brush = Brush.verticalGradient(
                 colors = listOf(
-                    CardBackground,
-                    CardBackground.copy(alpha = 0.8f)
+                    MaterialTheme.colorScheme.surfaceVariant,
+                    MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.8f)
                 )
             )
         )
@@ -318,14 +318,14 @@ fun SearchBar(
         placeholder = {
             Text(
                 text = placeholder,
-                color = TextTertiary
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
         },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Filled.Search,
                 contentDescription = "Search",
-                tint = TextSecondary
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
             )
         },
         trailingIcon = {
@@ -334,7 +334,7 @@ fun SearchBar(
                     Icon(
                         imageVector = Icons.Filled.Clear,
                         contentDescription = "Clear",
-                        tint = TextSecondary
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
@@ -343,13 +343,13 @@ fun SearchBar(
         singleLine = true,
         shape = RoundedCornerShape(16.dp),
         colors = OutlinedTextFieldDefaults.colors(
-            focusedContainerColor = DarkSurfaceVariant,
-            unfocusedContainerColor = DarkSurfaceVariant,
-            focusedBorderColor = PrimaryBlue,
+            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            focusedBorderColor = MaterialTheme.colorScheme.primary,
             unfocusedBorderColor = Color.Transparent,
-            cursorColor = PrimaryBlue,
-            focusedTextColor = TextPrimary,
-            unfocusedTextColor = TextPrimary
+            cursorColor = MaterialTheme.colorScheme.primary,
+            focusedTextColor = MaterialTheme.colorScheme.onSurface,
+            unfocusedTextColor = MaterialTheme.colorScheme.onSurface
         )
     )
 }
@@ -372,14 +372,14 @@ fun EmulatorPickerDialog(
                     text = "Selecciona un emulador",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    color = TextPrimary
+                    color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = "Para: ${rom.name}",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Normal,
-                    color = TextSecondary,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -397,7 +397,7 @@ fun EmulatorPickerDialog(
                             .clickable { onEmulatorSelected(emulator) },
                         shape = RoundedCornerShape(12.dp),
                         colors = CardDefaults.cardColors(
-                            containerColor = DarkSurfaceVariant
+                            containerColor = MaterialTheme.colorScheme.surfaceVariant
                         ),
                         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
                     ) {
@@ -432,7 +432,7 @@ fun EmulatorPickerDialog(
                                     modifier = Modifier
                                         .size(48.dp)
                                         .clip(RoundedCornerShape(12.dp))
-                                        .background(PrimaryBlue),
+                                        .background(MaterialTheme.colorScheme.primary),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Icon(
@@ -452,12 +452,12 @@ fun EmulatorPickerDialog(
                                     text = emulator.name,
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Bold,
-                                    color = TextPrimary
+                                    color = MaterialTheme.colorScheme.onSurface
                                 )
                                 Text(
                                     text = emulator.supportedPlatforms.joinToString(", ") { it.displayName },
                                     fontSize = 12.sp,
-                                    color = TextSecondary
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
                                 )
                             }
 
@@ -465,7 +465,7 @@ fun EmulatorPickerDialog(
                             Icon(
                                 imageVector = Icons.Filled.PlayArrow,
                                 contentDescription = null,
-                                tint = PrimaryBlue,
+                                tint = MaterialTheme.colorScheme.primary,
                                 modifier = Modifier.size(24.dp)
                             )
                         }
@@ -478,13 +478,13 @@ fun EmulatorPickerDialog(
             TextButton(onClick = onDismiss) {
                 Text(
                     text = "Cancelar",
-                    color = TextSecondary,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontWeight = FontWeight.SemiBold
                 )
             }
         },
-        containerColor = DarkSurface,
-        titleContentColor = TextPrimary,
-        textContentColor = TextPrimary
+        containerColor = MaterialTheme.colorScheme.surface,
+        titleContentColor = MaterialTheme.colorScheme.onSurface,
+        textContentColor = MaterialTheme.colorScheme.onSurface
     )
 }

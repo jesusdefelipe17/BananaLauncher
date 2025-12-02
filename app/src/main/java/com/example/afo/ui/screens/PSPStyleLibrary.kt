@@ -75,9 +75,9 @@ fun PSPStyleLibrary(
             .background(
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        Color(0xFF0A0E27),
-                        Color(0xFF1A1F3A),
-                        Color(0xFF0A0E27)
+                        MaterialTheme.colorScheme.background,
+                        MaterialTheme.colorScheme.surface,
+                        MaterialTheme.colorScheme.background
                     )
                 )
             )
@@ -214,7 +214,7 @@ private fun PSPGameHeader(
                     brush = Brush.verticalGradient(
                         colors = listOf(
                             Color.Transparent,
-                            Color(0xFF0A0E27).copy(alpha = 0.9f)
+                            MaterialTheme.colorScheme.background.copy(alpha = 0.9f)
                         )
                     )
                 )
@@ -254,7 +254,7 @@ private fun PSPGameHeader(
                         text = rom.name,
                         fontSize = 28.sp,
                         fontWeight = FontWeight.Black,
-                        color = TextPrimary,
+                        color = MaterialTheme.colorScheme.onSurface,
                         maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -270,8 +270,8 @@ private fun PSPGameHeader(
                         Icon(
                             imageVector = Icons.Filled.Refresh,
                             contentDescription = "Refrescar",
-                            tint = PrimaryBlue,
-                            modifier = Modifier.size(28.dp)
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.size(24.dp)
                         )
                     }
 
@@ -348,7 +348,7 @@ private fun PSPGameCard(
                                 brush = Brush.verticalGradient(
                                     colors = listOf(
                                         Color.Transparent,
-                                        Color.Black.copy(alpha = 0.9f)
+                                        MaterialTheme.colorScheme.background.copy(alpha = 0.9f)
                                     )
                                 )
                             )
@@ -383,7 +383,7 @@ private fun PSPGameCard(
                         .fillMaxWidth()
                         .height(4.dp)
                         .align(Alignment.BottomCenter)
-                        .background(PrimaryBlue)
+                        .background(MaterialTheme.colorScheme.primary)
                 )
             }
         }
@@ -447,20 +447,20 @@ private fun InfoItem(
         Icon(
             imageVector = icon,
             contentDescription = label,
-            tint = PrimaryBlue,
+            tint = MaterialTheme.colorScheme.primary,
             modifier = Modifier.size(24.dp)
         )
         Spacer(modifier = Modifier.height(4.dp))
         Text(
             text = label,
             fontSize = 11.sp,
-            color = TextSecondary,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             fontWeight = FontWeight.Medium
         )
         Text(
             text = value,
             fontSize = 13.sp,
-            color = TextPrimary,
+            color = MaterialTheme.colorScheme.onSurface,
             fontWeight = FontWeight.Bold
         )
     }
@@ -476,7 +476,7 @@ private fun GamePlaceholder(rom: RomFile) {
                     colors = listOf(
                         rom.platform.color.copy(alpha = 0.6f),
                         rom.platform.color.copy(alpha = 0.3f),
-                        CardBackground
+                        MaterialTheme.colorScheme.surfaceVariant
                     )
                 )
             ),
