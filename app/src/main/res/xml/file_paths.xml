@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Almacenamiento externo completo -->
+    <external-path name="external_storage" path="." />
+
+    <!-- Directorio de descargas -->
+    <external-path name="downloads" path="Download/" />
+
+    <!-- Directorios comunes de ROMs -->
+    <external-path name="roms" path="roms/" />
+    <external-path name="games" path="Games/" />
+    <external-path name="emulators" path="Emuladores/" />
+
+    <!-- Almacenamiento interno de la app -->
+    <files-path name="internal_files" path="." />
+    <cache-path name="cache" path="." />
+</paths>
+
